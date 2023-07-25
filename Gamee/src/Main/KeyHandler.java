@@ -7,6 +7,7 @@ public class KeyHandler implements KeyListener{
 
 	public boolean upPressed, downPressed, rightPressed, leftPressed, isRunning;
 	public boolean keyInputEnable = true;
+	public boolean setBomb = false;
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -35,6 +36,9 @@ public class KeyHandler implements KeyListener{
 			else if(code == KeyEvent.VK_A) {
 				isRunning = true;
 				leftPressed = true;
+			}
+			else if(code == KeyEvent.VK_SPACE) {
+				setBomb = true;
 			}
 		}
 		//System.out.println(keyInputEnable);

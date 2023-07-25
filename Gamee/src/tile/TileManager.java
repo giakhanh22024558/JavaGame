@@ -20,6 +20,7 @@ public class TileManager {
 	public Tile[] tile;
 	public int mapTileNum[][];
 	public Rectangle SolidArea[][];
+	public Rectangle ValidArea[][];
 	
 	public TileManager(GamePanel gp) {
 		
@@ -27,6 +28,7 @@ public class TileManager {
 		tile = new Tile[10];
 		mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
 		SolidArea = new Rectangle[100][100];
+		ValidArea = new Rectangle[100][100];
 		getTileImage();
 		loadMap();
 		GetHitBox();
@@ -80,6 +82,9 @@ public class TileManager {
 			{
 				SolidArea[row][col] = new Rectangle(x, y, gp.tileSize, gp.tileSize);
 			}
+			else {
+				ValidArea[row][col] = new Rectangle(x, y, gp.tileSize, gp.tileSize);
+			}
 			col++;
 			x += gp.tileSize;
 			
@@ -130,7 +135,7 @@ public class TileManager {
 			
 			int tileNum = mapTileNum[col][row];
 			
-			//g2.drawImage(tile[tileNum].img, x, y, gp.tileSize, gp.tileSize, null);
+			g2.drawImage(tile[tileNum].img, x, y, gp.tileSize, gp.tileSize, null);
 			if(tileNum == HILL || tileNum == FENCE || tileNum == WATER || tileNum == TREE || tileNum == BUSH) {
 				g2.drawRect(SolidArea[row][col].x, SolidArea[row][col].y, gp.tileSize, gp.tileSize);
 			}

@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import Entity.Bomb;
 import Entity.Player;
 import tile.TileManager;
 
@@ -28,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
 	KeyHandler keyH = new KeyHandler();
 	Thread gamethread;
 	Player player = new Player(this, keyH);
+	Bomb bomb = new Bomb(this, keyH, player);
 	TileManager tileM = new TileManager(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public int distance;
@@ -105,6 +107,8 @@ public class GamePanel extends JPanel implements Runnable {
 		int Row = player.directionBox.x / this.tileSize;
 		int Col2 = (player.directionBox.y + player.directionBox.height) / this.tileSize;
 		int Row2 = (player.directionBox.x + player.directionBox.width) / this.tileSize;
+		int Col3 = player.x / this.tileSize;
+		int Row3 = player.y / this.tileSize;
 		
 		if(tileM.SolidArea[Col][Row]!=null && tileM.SolidArea[Col2][Row2] == null) {
 			player.CollisionOn = cChecker.CheckTile(player.solidArea, tileM.SolidArea[Col][Row]);
@@ -122,6 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
 		if(tileM.SolidArea[Col][Row]==null && tileM.SolidArea[Col2][Row2] == null) {
 			player.CollisionOn = false;
 		}
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -131,6 +136,10 @@ public class GamePanel extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D)g; // Allow more sophisticated setting
 		
 		tileM.draw(g2);
+		if(keyH.setBomb) {
+			bomb.ExploseEnd = false;
+			bomb.draw(g2);
+		}
 		player.draw(g2);
 		
 		g2.dispose();

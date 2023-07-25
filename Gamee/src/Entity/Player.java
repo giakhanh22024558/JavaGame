@@ -84,7 +84,7 @@ public class Player extends Entity{
 	public void update() {
 		
 		this.solidArea.x = x + 60;
-		this.solidArea.y = y + 64;
+		this.solidArea.y = y + 60;
 			
 		if(!onHitbox) {
 			if(keyH.upPressed) {
@@ -131,7 +131,7 @@ public class Player extends Entity{
 				solidArea.x = x + 60 + 3;
 			}
 		}
-		System.out.println(solidArea.x + " " + solidArea.y);
+		//System.out.println(solidArea.x + " " + solidArea.y);
 		setDirectionBox();
 	}
 	

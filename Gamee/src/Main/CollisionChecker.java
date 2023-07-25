@@ -1,8 +1,5 @@
 package Main;
 
-import Entity.Entity;
-import static utils.Constants.PlayerConstants.*;
-
 import java.awt.Rectangle;
 
 public class CollisionChecker {
